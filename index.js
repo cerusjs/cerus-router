@@ -7,7 +7,8 @@ module.exports = function() {
 	self.version = package["version"];
 	self.dependencies = [
 		"cerus-server",
-		"cerus-promise"
+		"cerus-promise",
+		"cerus-fs"
 	];
 
 	var router;
