@@ -1,6 +1,6 @@
 {
 	"name": "cerus-router",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "The router module for CerusJS",
 	"main": "index.js",
 	"repository": {
