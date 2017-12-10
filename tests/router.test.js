@@ -653,7 +653,28 @@ describe("router", function() {
 	});
 
 	describe("#routers", function() {
+		context("with no routes initialized", function() {
+			it("should return an empty opject", function() {
+				expect(reset().routes()).to.deep.equal([]);
+			});
+		});
 
+		context("with one route initialized", function() {
+			it("should return an empty opject", function() {
+				var router = reset();
+				router.route("/*");
+				expect(router.routes().length).to.deep.equal(1);
+			});
+		});
+
+		context("with two routes initialized", function() {
+			it("should return an empty opject", function() {
+				var router = reset();
+				router.route("/*");
+				router.route("/test/*");
+				expect(router.routes().length).to.deep.equal(2);
+			});
+		});
 	});
 
 	describe("#middleware", function() {
