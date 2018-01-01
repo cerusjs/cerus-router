@@ -48,27 +48,6 @@ describe("router", function() {
 			});
 		});
 
-		context("with the url '/' and try to override", function() {
-			it("should route correctly", function(done) {
-				var router = reset();
-				router.route("/");
-				router.route("/", true)
-				.then(function(req, res) {
-					res.end();
-				});
-				cerus.server().start()
-				.then(function() {
-					cerus.request()
-					.port(cerus.settings().port())
-					.path("/")
-					.send(function() {
-						cerus.server().stop();
-						done();
-					});
-				});
-			});
-		});
-
 		context("with the url '/' and the correct method", function() {
 			it("should route correctly", function(done) {
 				reset().route("/", "POST")
@@ -593,7 +572,7 @@ describe("router", function() {
 			});
 		});
 
-		context("with a existent url", function() {
+		context("with an existent url", function() {
 			it("should have 0 routes left", function() {
 				var router = reset();
 				router.route("/");
