@@ -1,25 +1,24 @@
 module.exports = function() {
-	var self = {};
+	var plugin = {};
 
 	var package = require("./package.json");
+	var router;
 	
-	self.name = package["name"];
-	self.version = package["version"];
-	self.dependencies = [
+	plugin.name = package["name"];
+	plugin.version = package["version"];
+	plugin.dependencies = [
 		"cerus-server",
 		"cerus-promise",
 		"cerus-fs"
 	];
-
-	var router;
-
-	self.init_ = function(cerus) {
-		router = require("./lib/router")(cerus);
+	
+	plugin.init_ = function(cerus) {
+		router = new (require("./lib/router"))(cerus);
 	}
 
-	self.router = function() {
+	plugin.router = function() {
 		return router;
 	}
 
-	return self;
+	return plugin;
 }
