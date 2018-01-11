@@ -656,11 +656,55 @@ describe("router", function() {
 		});
 	});
 
-	describe("#middleware", function() {
-		describe("#add", function() {
-			context("with no parameters", function() {
-				it("should add the middleware with '*' as url", function() {
-					var router = reset();
+	describe("#use", function() {
+		context("with a single middleware", function() {
+			it("should be called", function(done) {
+				var router = reset();
+				router.use()
+				.then(function(req, res, next) {
+					res.headers().set("test1", "Set");
+					res.send();
+				});
+				cerus.server().start()
+				.then(function() {
+					cerus.request()
+					.path("/test/")
+					.port(cerus.settings().port())
+					.expect("header", "test1", "Set")
+					.send(function(err) {
+						cerus.server().stop();
+						if(err) throw err;
+						done();
+					});
+				});
+			});
+		});
+
+		context("with two middleware", function() {
+			it("should both be called", function(done) {
+				var router = reset();
+				router.use()
+				.then(function(req, res, next) {
+					res.headers().set("test1", "Set");
+					next();
+				});
+				router.use()
+				.then(function(req, res, next) {
+					res.headers().set("test2", "Set");
+					res.send();
+				});
+				cerus.server().start()
+				.then(function() {
+					cerus.request()
+					.path("/test/")
+					.port(cerus.settings().port())
+					.expect("header", "test1", "Set")
+					.expect("header", "test2", "Set")
+					.send(function(err) {
+						cerus.server().stop();
+						if(err) throw err;
+						done();
+					});
 				});
 			});
 		});
