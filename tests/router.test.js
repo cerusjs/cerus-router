@@ -709,4 +709,103 @@ describe("router", function() {
 			});
 		});
 	});
+
+	describe("#router", function() {
+		context("with no parameters", function() {
+			it("should throw a TypeError", function() {
+				var func = function() {
+					reset().router();
+				}
+
+				expect(func).to.throw();
+			});
+		});
+
+		context("with a number as parameters", function() {
+			it("should throw a TypeError", function() {
+				var func = function() {
+					reset().router(123);
+				}
+
+				expect(func).to.throw();
+			});
+		});
+
+		context("with an incorrect path as parameters", function() {
+			it("should throw an error", function() {
+				var func = function() {
+					reset().router("I'm incorrect");
+				}
+
+				expect(func).to.throw();
+			});
+		});
+
+		context("with a correct path as parameters", function() {
+			it("should create the router", function() {
+				var func = function() {
+					reset().router("/test/");
+				}
+
+				expect(func).to.not.throw();
+			});
+		});
+
+		context("test the correct router", function() {
+			it("should create the router and work", function(done) {
+				var router = reset();
+
+				router.router("/test/").route("/")
+				.then(function(req, res) {
+					res.end();
+				});
+
+				cerus.server().start()
+				.then(function() {
+					cerus.request()
+					.port(cerus.settings().port())
+					.path("/test/")
+					.method("GET")
+					.send(function() {
+						cerus.server().stop();
+						done();
+					});
+				});
+			});
+		});
+
+		context("test the correct router with multiple routes", function() {
+			it("should create the router and work", function(done) {
+				var router = reset();
+
+				router.route("/test1/")
+				.then(function(req, res) {
+					res.end();
+				});
+
+				router.router("/test2/").route("/")
+				.then(function(req, res) {
+					res.end();
+				});
+
+				cerus.server().start()
+				.then(function() {
+					cerus.request()
+					.port(cerus.settings().port())
+					.path("/test1/")
+					.method("GET")
+					.send(function() {
+						cerus.request()
+						.port(cerus.settings().port())
+						.path("/test2/")
+						.method("GET")
+						.send(function() {
+							cerus.server().stop();
+							done();
+						});
+					});
+				});
+			});
+		});
+	});
 });
