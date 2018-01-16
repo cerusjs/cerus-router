@@ -7,7 +7,7 @@ var reset = function() {
 	return router.router();
 }
 
-describe.only("request", function() {
+describe("request", function() {
 	describe("#readable", function() {
 		context("with no parameters", function() {
 			it("should be true by default", function(done) {
