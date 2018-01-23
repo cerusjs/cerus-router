@@ -8,6 +8,7 @@ var reset = function() {
 }
 
 describe("router", function() {
+	// TODO: Most of this should be moved to it own file
 	describe("#route", function() {
 		context("with no parameters", function() {
 			it("should throw an error", function() {
@@ -105,7 +106,9 @@ describe("router", function() {
 					cerus.request()
 					.port(cerus.settings().port())
 					.path("/")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.path("/test")
 					.send(function() {
@@ -132,7 +135,9 @@ describe("router", function() {
 					cerus.request()
 					.port(cerus.settings().port())
 					.path("/test")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.path("/")
 					.send(function() {
@@ -160,7 +165,9 @@ describe("router", function() {
 					.port(cerus.settings().port())
 					.path("/")
 					.method("POST")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.path("/")
 					.method("GET")
@@ -184,9 +191,40 @@ describe("router", function() {
 					cerus.request()
 					.port(cerus.settings().port())
 					.path("/test")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.path("/")
+					.send(function() {
+						cerus.server().stop();
+						done();
+					});
+				});
+			});
+		});
+
+		context("with a set method and priority", function() {
+			it("should be put in the front", function() {
+				var router = reset();
+				router.route("/test2/");
+				router.route("/test1/", "POST", true);
+				expect(router._stack[0].path).to.equal("/test1/");
+			});
+		});
+
+		context("with the route /test/*", function() {
+			it("should route fine", function(done) {
+				var router = reset();
+				router.route("/test/*")
+				.then(function(req, res) {
+					res.end();
+				});
+				cerus.server().start()
+				.then(function() {
+					cerus.request()
+					.port(cerus.settings().port())
+					.path("/test/test1")
 					.send(function() {
 						cerus.server().stop();
 						done();
@@ -254,7 +292,9 @@ describe("router", function() {
 					.port(cerus.settings().port())
 					.method("GET")
 					.path("/")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.method("GET")
 					.path("/test")
@@ -325,7 +365,9 @@ describe("router", function() {
 					.port(cerus.settings().port())
 					.method("PUT")
 					.path("/")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.method("PUT")
 					.path("/test")
@@ -396,7 +438,9 @@ describe("router", function() {
 					.port(cerus.settings().port())
 					.method("POST")
 					.path("/")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.method("POST")
 					.path("/test")
@@ -467,7 +511,9 @@ describe("router", function() {
 					.port(cerus.settings().port())
 					.method("DELETE")
 					.path("/")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.method("DELETE")
 					.path("/test")
@@ -538,7 +584,9 @@ describe("router", function() {
 					.port(cerus.settings().port())
 					.method("HEAD")
 					.path("/")
-					.send()
+					.send(function(err) {
+						if(err) throw err;
+					})
 					.port(cerus.settings().port())
 					.method("HEAD")
 					.path("/test")
@@ -606,6 +654,26 @@ describe("router", function() {
 	});
 
 	describe("#check", function() {
+		context("with no parameters", function() {
+			it("should throw a TypeError", function() {
+				var func = function() {
+					reset().check();
+				}
+
+				expect(func).to.throw();
+			});
+		});
+
+		context("with incorrect parameters", function() {
+			it("should throw a TypeError", function() {
+				var func = function() {
+					reset().check(1234);
+				}
+
+				expect(func).to.throw();
+			});
+		});
+
 		context("with the url '/test/test1/'", function() {
 			it("should return true", function() {
 				expect(reset().check("/test/test1/")).to.be.true;
