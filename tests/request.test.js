@@ -7,26 +7,6 @@ var reset = function() {
 	return router.router();
 }
 
-/*
-	var router = reset();
-
-	router.route("/")
-	.then(function(req, res) {
-		expect(req.method()).to.equal("POST");
-		res.send();
-	});
-
-	cerus.request()
-	.port(cerus.settings().port())
-	.path("/")
-	.method("POST")
-	.send(function(err) {
-		if(err) throw err;
-
-		done();
-	});
-*/
-
 describe("request", function() {
 	beforeEach(function(done) {
 		cerus.server().start()
