@@ -180,7 +180,7 @@ describe("router", function() {
 		});
 
 		context("with the url '*'", function() {
-			it("should route correctly", function() {
+			it("should route correctly", function(done) {
 				var router = reset();
 				router.route("*")
 				.then(function(req, res) {
@@ -226,6 +226,30 @@ describe("router", function() {
 					.port(cerus.settings().port())
 					.path("/test/test1")
 					.send(function() {
+						cerus.server().stop();
+						done();
+					});
+				});
+			});
+		});
+
+		context("immediately calling next", function() {
+			it("should send a 404 error", function(done) {
+				var router = reset();
+				router.route("*")
+				.then(function(req, res, next) {
+					next();
+				});
+				router.route("/test")
+				.then(function(req, res, next) {
+					res.end();
+				});
+				cerus.server().start()
+				.then(function() {
+					cerus.request()
+					.port(cerus.settings().port())
+					.path("/test")
+					.send(function(err) {
 						cerus.server().stop();
 						done();
 					});
