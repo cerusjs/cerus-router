@@ -1,8 +1,7 @@
 var expect = require("chai").expect;
-var cerus = require("cerus")();
 var router = require("../index")();
 var reset = function() {
-	router.init_(cerus);
+	router._init(cerus);
 	return router.router();
 }
 
@@ -38,7 +37,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function() {
 						cerus.server().stop();
@@ -57,7 +55,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.method("POST")
 					.send(function() {
@@ -77,7 +74,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.method("POST")
 					.expect("code", 404)
@@ -103,12 +99,10 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.path("/test")
 					.send(function() {
 						cerus.server().stop();
@@ -132,12 +126,10 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/test")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function() {
 						cerus.server().stop();
@@ -161,13 +153,11 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.method("POST")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.path("/")
 					.method("GET")
 					.send(function() {
@@ -188,12 +178,10 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/test")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function() {
 						cerus.server().stop();
@@ -222,7 +210,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/test/test1")
 					.send(function() {
 						cerus.server().stop();
@@ -246,7 +233,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/test")
 					.send(function(err) {
 						cerus.server().stop();
@@ -287,7 +273,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("GET")
 					.path("/")
 					.send(function() {
@@ -312,13 +297,11 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("GET")
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.method("GET")
 					.path("/test")
 					.send(function() {
@@ -360,7 +343,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("PUT")
 					.path("/")
 					.send(function() {
@@ -385,13 +367,11 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("PUT")
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.method("PUT")
 					.path("/test")
 					.send(function() {
@@ -433,7 +413,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("POST")
 					.path("/")
 					.send(function() {
@@ -458,13 +437,11 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("POST")
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.method("POST")
 					.path("/test")
 					.send(function() {
@@ -506,7 +483,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("DELETE")
 					.path("/")
 					.send(function() {
@@ -531,13 +507,11 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("DELETE")
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.method("DELETE")
 					.path("/test")
 					.send(function() {
@@ -579,7 +553,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("HEAD")
 					.path("/")
 					.send(function() {
@@ -604,13 +577,11 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.method("HEAD")
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
 					})
-					.port(cerus.settings().port())
 					.method("HEAD")
 					.path("/test")
 					.send(function() {
@@ -760,7 +731,6 @@ describe("router", function() {
 				.then(function() {
 					cerus.request()
 					.path("/test/")
-					.port(cerus.settings().port())
 					.expect("header", "test1", "Set")
 					.send(function(err) {
 						cerus.server().stop();
@@ -788,7 +758,6 @@ describe("router", function() {
 				.then(function() {
 					cerus.request()
 					.path("/test/")
-					.port(cerus.settings().port())
 					.expect("header", "test1", "Set")
 					.expect("header", "test2", "Set")
 					.send(function(err) {
@@ -854,7 +823,6 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/test/")
 					.method("GET")
 					.send(function() {
@@ -882,12 +850,10 @@ describe("router", function() {
 				cerus.server().start()
 				.then(function() {
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/test1/")
 					.method("GET")
 					.send(function() {
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/test2/")
 						.method("GET")
 						.send(function() {

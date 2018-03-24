@@ -1,9 +1,9 @@
 var expect = require("chai").expect;
-var cerus = require("cerus")();
+global.cerus = require("cerus")();
 cerus.use(require("cerus-request")());
 var router = require("../index")();
 var reset = function() {
-	router.init_(cerus);
+	router._init(cerus);
 	return router.router();
 }
 
@@ -39,7 +39,6 @@ describe("request#agent", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -62,7 +61,6 @@ describe("request#agent", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -86,7 +84,6 @@ describe("request#agent", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.header("user-agent", "test")
 				.send(function(err) {
@@ -109,7 +106,6 @@ describe("request#agent", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 				.send(function(err) {
@@ -139,7 +135,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -162,7 +157,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -186,7 +180,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -209,7 +202,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 					.send(function(err) {
@@ -234,7 +226,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -257,7 +248,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 					.send(function(err) {
@@ -287,7 +277,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.send(function(err) {
 							if(err) throw err;
@@ -310,7 +299,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.send(function(err) {
 							if(err) throw err;
@@ -334,7 +322,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "")
 						.send(function(err) {
@@ -357,7 +344,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 						.send(function(err) {
@@ -380,7 +366,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Linux; Android 4.4; Nexus 5 Build/_BuildID_) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36")
 						.send(function(err) {
@@ -405,7 +390,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "")
 						.send(function(err) {
@@ -428,7 +412,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 						.send(function(err) {
@@ -451,7 +434,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Linux; Android 4.4; Nexus 5 Build/_BuildID_) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36")
 						.send(function(err) {
@@ -476,7 +458,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "")
 						.send(function(err) {
@@ -499,7 +480,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 						.send(function(err) {
@@ -522,7 +502,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16")
 						.send(function(err) {
@@ -547,7 +526,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "")
 						.send(function(err) {
@@ -570,7 +548,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 						.send(function(err) {
@@ -593,7 +570,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1")
 						.send(function(err) {
@@ -618,7 +594,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "")
 						.send(function(err) {
@@ -641,7 +616,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 						.send(function(err) {
@@ -664,7 +638,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko")
 						.send(function(err) {
@@ -689,7 +662,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "")
 						.send(function(err) {
@@ -712,7 +684,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 						.send(function(err) {
@@ -735,7 +706,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246")
 						.send(function(err) {
@@ -760,7 +730,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "")
 						.send(function(err) {
@@ -783,7 +752,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 						.send(function(err) {
@@ -806,7 +774,6 @@ describe("request#agent", function() {
 						});
 
 						cerus.request()
-						.port(cerus.settings().port())
 						.path("/")
 						.header("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A")
 						.send(function(err) {
@@ -838,7 +805,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -861,7 +827,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -885,7 +850,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -908,7 +872,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Linux; Android 4.4; Nexus 5 Build/_BuildID_) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36")
 					.send(function(err) {
@@ -933,7 +896,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -956,7 +918,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Apple TV; CPU iPhone OS 9_0 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13T534YI")
 					.send(function(err) {
@@ -979,7 +940,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19")
 					.send(function(err) {
@@ -1004,7 +964,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -1027,7 +986,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19")
 					.send(function(err) {
@@ -1050,7 +1008,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Linux; Android 4.4; Nexus 5 Build/_BuildID_) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36")
 					.send(function(err) {
@@ -1082,7 +1039,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -1105,7 +1061,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -1129,7 +1084,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -1152,7 +1106,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 					.send(function(err) {
@@ -1175,7 +1128,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16")
 					.send(function(err) {
@@ -1200,7 +1152,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -1223,7 +1174,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16' as user-agent")
 					.send(function(err) {
@@ -1246,7 +1196,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 					.send(function(err) {
@@ -1276,7 +1225,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -1299,7 +1247,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -1323,7 +1270,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -1346,7 +1292,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36")
 					.send(function(err) {
@@ -1369,7 +1314,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Apple TV; CPU iPhone OS 9_0 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13T534YI")
 					.send(function(err) {
@@ -1394,7 +1338,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -1417,7 +1360,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Apple TV; CPU iPhone OS 9_0 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13T534YI")
 					.send(function(err) {
@@ -1440,7 +1382,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16")
 					.send(function(err) {
@@ -1470,7 +1411,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -1493,7 +1433,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -1517,7 +1456,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "")
 					.send(function(err) {
@@ -1540,7 +1478,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1")
 					.send(function(err) {
@@ -1563,7 +1500,6 @@ describe("request#agent", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("user-agent", "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16")
 					.send(function(err) {

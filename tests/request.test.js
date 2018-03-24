@@ -1,8 +1,7 @@
 var expect = require("chai").expect;
-var cerus = require("cerus")();
 var router = require("../index")();
 var reset = function() {
-	router.init_(cerus);
+	router._init(cerus);
 	return router.router();
 }
 
@@ -32,7 +31,6 @@ describe("request", function() {
 			});
 
 			cerus.request()
-			.port(cerus.settings().port())
 			.path("/")
 			.send(function(err) {
 				if(err) throw err;
@@ -54,7 +52,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -77,7 +74,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -101,7 +97,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.body("test")
 				.send(function(err) {
@@ -125,7 +120,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -146,7 +140,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/test/")
 				.send(function(err) {
 					if(err) throw err;
@@ -169,7 +162,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.method("POST")
 				.send(function(err) {
@@ -191,7 +183,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.method("GET")
 				.send(function(err) {
@@ -213,7 +204,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.method("HEAD")
 				.send(function(err) {
@@ -235,7 +225,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.method("PUT")
 				.send(function(err) {
@@ -257,7 +246,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.method("DELETE")
 				.send(function(err) {
@@ -281,7 +269,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -304,7 +291,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -327,7 +313,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.header("X-Forwarded-Host", "example.com")
 				.send(function(err) {
@@ -349,7 +334,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.header("Host", "[2001:0db8:85a3:0000:0000:8a2e:0370:7334]")
 				.send(function(err) {
@@ -371,7 +355,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.header("Host", "example.com")
 				.send(function(err) {
@@ -393,7 +376,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.header("Host", "example.com")
 				.send(function(err) {
@@ -417,7 +399,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -438,7 +419,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/test/")
 				.send(function(err) {
 					if(err) throw err;
@@ -461,7 +441,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -482,7 +461,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/test/")
 				.send(function(err) {
 					if(err) throw err;
@@ -505,7 +483,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -526,7 +503,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/#test")
 				.send(function(err) {
 					if(err) throw err;
@@ -548,7 +524,6 @@ describe("request", function() {
 			});
 
 			cerus.request()
-			.port(cerus.settings().port())
 			.path("/")
 			.send(function(err) {
 				if(err) throw err;
@@ -573,7 +548,6 @@ describe("request", function() {
 			});
 
 			cerus.request()
-			.port(cerus.settings().port())
 			.path("/")
 			.send(function(err) {
 				if(err) throw err;
@@ -599,7 +573,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -624,7 +597,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -647,7 +619,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.body("abc")
 				.header("content-type", "application/json")
@@ -670,7 +641,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.body("abc")
 				.header("content-type", "application/json")
@@ -693,7 +663,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.body("abc")
 				.header("content-type", "text/html")
@@ -716,7 +685,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.body("abc")
 				.header("content-type", "application/json")
@@ -739,7 +707,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.body("abc")
 				.header("content-type", "application/json")
@@ -762,7 +729,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.body("abc")
 				.header("content-type", "application/json")
@@ -787,7 +753,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -814,7 +779,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -835,7 +799,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/?test=value")
 				.send(function(err) {
 					if(err) throw err;
@@ -859,7 +822,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.method("POST")
 				.body("{\"test\": \"value\"}")
@@ -884,7 +846,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -905,7 +866,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.header("X-Requested-With", "xmlhttprequest")
 				.send(function(err) {
@@ -929,7 +889,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -950,7 +909,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.header("X-Forwarded-Proto", "http")
 				.send(function(err) {
@@ -973,7 +931,6 @@ describe("request", function() {
 			});
 
 			cerus.request()
-			.port(cerus.settings().port())
 			.path("/")
 			.send(function(err) {
 				if(err) throw err;
@@ -1009,7 +966,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					var func = function() {
@@ -1039,7 +995,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -1060,7 +1015,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -1081,7 +1035,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -1102,7 +1055,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -1129,7 +1081,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -1140,7 +1091,7 @@ describe("request", function() {
 		});
 
 		describe("#address", function() {
-			it("should be / by default", function(done) {
+			it("should be ::ffff:127.0.0.1 by default", function(done) {
 				var router = reset();
 
 				router.route("/")
@@ -1150,7 +1101,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -1161,17 +1111,16 @@ describe("request", function() {
 		});
 
 		describe("#port", function() {
-			it("should be / by default", function(done) {
+			it("should be 80 by default", function(done) {
 				var router = reset();
 
 				router.route("/")
 				.then(function(req, res) {
-					expect(req.local().port()).to.equal(8080);
+					expect(req.local().port()).to.equal(80);
 					res.send();
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -1198,7 +1147,6 @@ describe("request", function() {
 				});
 
 				cerus.request()
-				.port(cerus.settings().port())
 				.path("/")
 				.send(function(err) {
 					if(err) throw err;
@@ -1210,17 +1158,16 @@ describe("request", function() {
 
 		describe("#read", function() {
 			context("with no data send", function() {
-				it("should equal 59 bytes", function(done) {
+				it("should be a number", function(done) {
 					var router = reset();
 
 					router.route("/")
 					.then(function(req, res) {
-						expect(req.bytes().read()).to.equal(59);
+						expect(req.bytes().read()).to.be.a("number");
 						res.send();
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
@@ -1231,17 +1178,16 @@ describe("request", function() {
 			});
 
 			context("with a header send", function() {
-				it("should equal 84 bytes", function(done) {
+				it("should be a number", function(done) {
 					var router = reset();
 
 					router.route("/")
 					.then(function(req, res) {
-						expect(req.bytes().read()).to.equal(84);
+						expect(req.bytes().read()).to.be.a("number");
 						res.send();
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.header("content-type", "text/html")
 					.send(function(err) {
@@ -1253,17 +1199,16 @@ describe("request", function() {
 			});
 
 			context("with data send", function() {
-				it("should equal 96 bytes", function(done) {
+				it("should be a number", function(done) {
 					var router = reset();
 
 					router.route("/")
 					.then(function(req, res) {
-						expect(req.bytes().read()).to.equal(96);
+						expect(req.bytes().read()).to.be.a("number");
 						res.send();
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.body("{\"test\": \"value\"}")
 					.send(function(err) {
@@ -1287,7 +1232,6 @@ describe("request", function() {
 					});
 
 					cerus.request()
-					.port(cerus.settings().port())
 					.path("/")
 					.send(function(err) {
 						if(err) throw err;
