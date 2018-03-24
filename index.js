@@ -12,7 +12,7 @@ module.exports = function() {
 		"cerus-fs"
 	];
 	
-	plugin.init_ = function(cerus) {
+	plugin._init = function(cerus) {
 		router = new (require("./lib/router"))(cerus);
 	}
 
