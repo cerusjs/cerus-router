@@ -1,6 +1,5 @@
 var expect = require("chai").expect;
 var cerus = require("cerus")();
-cerus.use(require("cerus-request")());
 var router = require("../index")();
 var reset = function() {
 	router.init_(cerus);
