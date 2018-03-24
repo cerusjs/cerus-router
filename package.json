@@ -24,9 +24,9 @@
 		"ua-parser-js": "^0.7.17"
 	},
 	"devDependencies": {
-		"cerus": "^0.0.14",
+		"cerus": "^0.1.1",
 		"cerus-request": "^0.1.2",
 		"chai": "^4.1.2",
-		"mocha": "^4.0.1"
+		"mocha": "^5.0.4"
 	}
 }
