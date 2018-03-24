@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.3 (8 Feb. 2018)
+- (New) Added more documentation.
+- (Enh) Changed some matching.
+- (Fix) Fixed the cookie split string.
+- (Fix) Fixed the route for middleware.
+- (Fix) Fixed an issue with the cookie parser.
+
 ## v0.1.2 (28 Jan. 2018)
 - (Enh) Changed how the response handles response.
 - (Fix) Fixed a typo in the reponse class.
