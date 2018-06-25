@@ -38,8 +38,9 @@ describe("router", function() {
 				.then(function() {
 					cerus.request()
 					.path("/")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -57,8 +58,9 @@ describe("router", function() {
 					cerus.request()
 					.path("/")
 					.method("POST")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -76,9 +78,10 @@ describe("router", function() {
 					cerus.request()
 					.path("/")
 					.method("POST")
-					.expect("code", 404)
-					.send(function() {
+					.expect("status", 404)
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -104,8 +107,9 @@ describe("router", function() {
 						if(err) throw err;
 					})
 					.path("/test")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -131,8 +135,9 @@ describe("router", function() {
 						if(err) throw err;
 					})
 					.path("/")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -160,8 +165,9 @@ describe("router", function() {
 					})
 					.path("/")
 					.method("GET")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -183,8 +189,9 @@ describe("router", function() {
 						if(err) throw err;
 					})
 					.path("/")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -211,8 +218,9 @@ describe("router", function() {
 				.then(function() {
 					cerus.request()
 					.path("/test/test1")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -236,6 +244,7 @@ describe("router", function() {
 					.path("/test")
 					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -275,8 +284,30 @@ describe("router", function() {
 					cerus.request()
 					.method("GET")
 					.path("/")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
+						done();
+					});
+				});
+			});
+		});
+
+		context("with the url '/'", function() {
+			it("should respond to '/?test' requests", function(done) {
+				reset().get("/")
+				.then(function(req, res) {
+					res.end();
+				});
+				cerus.server().start()
+				.then(function() {
+					cerus.request()
+					.method("GET")
+					.path("/?test")
+					.expect("status", 200)
+					.send(function(err) {
+						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -304,8 +335,9 @@ describe("router", function() {
 					})
 					.method("GET")
 					.path("/test")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -345,8 +377,9 @@ describe("router", function() {
 					cerus.request()
 					.method("PUT")
 					.path("/")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -374,8 +407,9 @@ describe("router", function() {
 					})
 					.method("PUT")
 					.path("/test")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -415,8 +449,9 @@ describe("router", function() {
 					cerus.request()
 					.method("POST")
 					.path("/")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -444,8 +479,9 @@ describe("router", function() {
 					})
 					.method("POST")
 					.path("/test")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -485,8 +521,9 @@ describe("router", function() {
 					cerus.request()
 					.method("DELETE")
 					.path("/")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -514,8 +551,9 @@ describe("router", function() {
 					})
 					.method("DELETE")
 					.path("/test")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -555,8 +593,9 @@ describe("router", function() {
 					cerus.request()
 					.method("HEAD")
 					.path("/")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
@@ -584,8 +623,9 @@ describe("router", function() {
 					})
 					.method("HEAD")
 					.path("/test")
-					.send(function() {
+					.send(function(err) {
 						cerus.server().stop();
+						if(err) throw err;
 						done();
 					});
 				});
