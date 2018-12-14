@@ -47,28 +47,6 @@ describe("request#agent", function() {
 				});
 			});
 		});
-		
-		context("creating it twice", function() {
-			it("shouldn't recreate the class", function(done) {
-				var router = reset();
-
-				router.route("/")
-				.then(function(req, res) {
-					req.agent().test = "test";
-					expect(req.agent().test).to.equal("test");
-
-					res.send();
-				});
-
-				cerus.request()
-				.path("/")
-				.send(function(err) {
-					if(err) throw err;
-
-					done();
-				});
-			});
-		});
 	});
 
 	describe("#string", function() {

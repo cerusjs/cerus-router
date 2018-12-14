@@ -8,16 +8,6 @@ var reset = function() {
 describe("router", function() {
 	// TODO: Most of this should be moved to it own file
 	describe("#route", function() {
-		context("with no parameters", function() {
-			it("should throw an error", function() {
-				var func = function() {
-					reset().route();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with an incorrect url", function() {
 			it("should throw an error", function() {
 				var func = function() {
@@ -49,7 +39,7 @@ describe("router", function() {
 
 		context("with the url '/' and the correct method", function() {
 			it("should route correctly", function(done) {
-				reset().route("/", "POST")
+				reset().route("/", {method: "POST"})
 				.then(function(req, res) {
 					res.end();
 				});
@@ -69,7 +59,7 @@ describe("router", function() {
 
 		context("with the url '/' and the incorrect method", function() {
 			it("should return 404", function(done) {
-				reset().route("/", "GET")
+				reset().route("/", {method: "GET"})
 				.then(function(req, res) {
 					res.end();
 				});
@@ -147,11 +137,11 @@ describe("router", function() {
 		context("with the methods 'GET' and 'POST'", function() {
 			it("should route both correctly", function(done) {
 				var router = reset();
-				router.route("/", "POST")
+				router.route("/", {method: "POST"})
 				.then(function(req, res) {
 					res.end();
 				});
-				router.route("/", "GET")
+				router.route("/", {method: "GET"})
 				.then(function(req, res) {
 					res.end();
 				});
@@ -202,7 +192,7 @@ describe("router", function() {
 			it("should be put in the front", function() {
 				var router = reset();
 				router.route("/test2/");
-				router.route("/test1/", "POST", true);
+				router.route("/test1/", {method: "POST", priority: true});
 				expect(router._stack[0].path).to.equal("/test1/");
 			});
 		});
@@ -253,16 +243,6 @@ describe("router", function() {
 	});
 
 	describe("#get", function() {
-		context("with no parameters", function() {
-			it("should throw an error", function() {
-				var func = function() {
-					reset().get();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with an incorrect url", function() {
 			it("should throw an error", function() {
 				var func = function() {
@@ -346,16 +326,6 @@ describe("router", function() {
 	});
 
 	describe("#put", function() {
-		context("with no parameters", function() {
-			it("should throw an error", function() {
-				var func = function() {
-					reset().put();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with an incorrect url", function() {
 			it("should throw an error", function() {
 				var func = function() {
@@ -418,16 +388,6 @@ describe("router", function() {
 	});
 
 	describe("#post", function() {
-		context("with no parameters", function() {
-			it("should throw an error", function() {
-				var func = function() {
-					reset().post();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with an incorrect url", function() {
 			it("should throw an error", function() {
 				var func = function() {
@@ -490,16 +450,6 @@ describe("router", function() {
 	});
 
 	describe("#delete", function() {
-		context("with no parameters", function() {
-			it("should throw an error", function() {
-				var func = function() {
-					reset().delete();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with an incorrect url", function() {
 			it("should throw an error", function() {
 				var func = function() {
@@ -562,16 +512,6 @@ describe("router", function() {
 	});
 
 	describe("#head", function() {
-		context("with no parameters", function() {
-			it("should throw an error", function() {
-				var func = function() {
-					reset().head();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with an incorrect url", function() {
 			it("should throw an error", function() {
 				var func = function() {
@@ -634,16 +574,6 @@ describe("router", function() {
 	});
 
 	describe("#remove", function() {
-		context("with no parameters", function() {
-			it("should throw an error", function() {
-				var func = function() {
-					reset().remove();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with a non-existent url", function() {
 			it("should throw an error", function() {
 				var func = function() {
@@ -667,8 +597,8 @@ describe("router", function() {
 		context("with a existent url and specified method", function() {
 			it("should have 0 routes left", function() {
 				var router = reset();
-				router.route("/", "GET");
-				router.remove("/", "GET");
+				router.route("/", {method: "GET"});
+				router.remove("/", {method: "GET"});
 
 				expect(router.routes().length).to.equal(0);
 			});
@@ -678,8 +608,8 @@ describe("router", function() {
 			it("should throw an error", function() {
 				var func = function() {
 					var router = reset();
-					router.route("/", "POST");
-					router.remove("/", "GET");
+					router.route("/", {method: "POST"});
+					router.remove("/", {method: "GET"});
 				}
 
 				expect(func).to.throw();
@@ -688,26 +618,6 @@ describe("router", function() {
 	});
 
 	describe("#check", function() {
-		context("with no parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					reset().check();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with incorrect parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					reset().check(1234);
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with the url '/test/test1/'", function() {
 			it("should return true", function() {
 				expect(reset().check("/test/test1/")).to.be.true;
@@ -811,26 +721,6 @@ describe("router", function() {
 	});
 
 	describe("#router", function() {
-		context("with no parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					reset().router();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with a number as parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					reset().router(123);
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
 		context("with an incorrect path as parameters", function() {
 			it("should throw an error", function() {
 				var func = function() {
